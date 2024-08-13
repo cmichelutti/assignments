@@ -1,0 +1,33 @@
+Please solve this problem for me about 'Ploy', a chess-like board game. It is a Java problem, more information is given below:
+The board is described by a string structured as follows: Rows are separated by "/" and squares within rows are separated by ",". There are no "/" characters at the beginning and end of the string, and there are no "," characters at the beginning and end of each row. The squares are listed from a9 to i1. Within each square, a piece can be encoded as follows: The first character represents the colour, "b" for black and "w" for white. The following positions represent a decimal number between 1 and 255. Viewed as an unsigned 8-bit binary number, each bit corresponds to a direction in which the piece can move (represented as lines in the GUI). The least significant bit (LSB) represents upwards (or north, or along a column towards the row with the higher number), and the higher bits represent the other directions, clockwise from north. If there is no figure on the board, the space in the string remains empty. So the board at the start is described as follows: 
+,w84,w41,w56,w170,w56,w41,w84,/ , ,w24,w40,w17,w40,w48, , / , , , w16 , w16 , w16 , , , / , , , , , , , , / , , , , , , , , / , , , , , , , , / , , , b1 , b1 , b1 , , , / , , b3 , b130 , b17 , b130 , b129 , , / , b69 , b146 , b131 , b170 , b131 , b146 , b69 ,
+Moves are described by a string in the format <start>-<destination>-<rotation>, where <rotation> is the number of clockwise rotation steps. A rotation that causes a line to point southeast instead of north would be described by <rotation>=3. A counterclockwise step to the northwest is described by <rotation>=7. Rotations of more than seven steps are not allowed. Therefore, a move always consists of seven characters, based on the available options.
+The game is played on a two-dimensional board of 9x9 squares - black starts. At the start of the game, each player has 15 pieces, with lines indicating the direction in which they can move. On each move, one piece can be moved and/or rotated, with each piece having different abilities. There are the following pieces:
+
+- Shield: Has one bit set, so one way to move and can go less or equal to one square and/or one turn (afterwards).
+- Probe: Has two bits set, so two ways to move, and can either move up to two squares or turn.
+- Lance: Has three bits set, so three ways to move, and can either move up to three squares or turn.
+- Commander: Has four bits set, so four ways to move, and can either move less or equal to one square or turn.
+
+Each move must be a movement and/or rotation that causes a change of state. A piece can be moved horizontally, vertically and diagonally along the directional lines shown on the piece. Pieces cannot be jumped over. The target square can either be empty or occupied by an opposing piece, in which case the opposing piece is removed from the board. The game ends when one of the two players either has no Commander left or only the Commander. The player who made the last move wins.
+To describe the game situation and the moves, we use a modified FEN notation (well known from chess). This means that the columns are labelled with small letters from 'a' to 'i' and the rows with numbers from 1 to 9. To uniquely identify a square, the column is given first, followed by the row. For example, 'a1' represents the bottom left corner and 'i9' represents the top right corner. At the start of the game, the black pieces are placed in the 'lower' squares in rows 1-3, while the white pieces are placed in the 'upper' squares in rows 7-9.
+The task now is to develop a data model within the already started PloyGame class for the specific game ploy, which can describe the state of the game. Using this data model, the function tryMove(String moveString, Player player) should be implemented to validate and possibly execute a move. Specifically, the following needs to be done:
+
+- A user could attack or cheat the system by manipulating requests to the server. It is necessary to check if the move input is in the specified format and to check if the given player is the current player.
+- It is necessary to check if the move is valid according to the rules of the ploy provided in this challenge.
+- If the move is valid, it must be executed, i.e. the change must be reflected in the internal representation of the board so that the updated state of the game can be returned. It is then the other player's turn. If the game ends with one player winning, this must be recorded in the attributes of the Game class. In addition, the game history must be maintained (as specified in the Game superclass).
+
+Normally a new PloyGame starts with the initial state (see the Ploy rules).
+Two additional functions should be implemented to set and get the game state (according to the board representation). setBoard(String) is used together with the existing setNextPlayer() function in our and your test cases to start the game at any point and allow more compact testing of individual situations. As a test function, it does not need to validate inputs, as all our inputs can occur in the game.
+We have provided an Eclipse Servlet project as a template, where all the client functionality (HTML files with JavaScript) and the Servlet are already included. In the existing classes, TODO comments mark the places where you should continue (functionality is missing in the PloyGame class). Of course, there are also classes that are missing. New classes can be created. Existing code should not be modified (unless explicitly stated).
+The code you develop must meet the following metrics:
+
+- Method Lines of Code : max. value 25
+- McCabe cyclomatic complexity : max. value 10
+- Nested Block Depth : max. value 4
+- Number of parameters per function : max. value 5
+
+Here is the Java template:
+Show Game.java, Move.java, Player.java
+
+In conclusion, the initial prompt contains only the Java part of the task. Any irrelevant information was excluded from the task. Additionally, the order of the prompt differs from the original task. 
