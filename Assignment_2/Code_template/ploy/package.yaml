@@ -1,7 +1,7 @@
 name:                ploy
 version:             1.0.0.0
-author:              "Simon Schwan"
-maintainer:          "s.schwan@tu-berlin.de"
+author:              "Assistant lecturers of SESE"
+maintainer:          "lehre@sese.tu-berlin.de"
 copyright:           "2022 TU Berlin - Software and Embedded Systems Engineering (SESE)"
 
 dependencies:
